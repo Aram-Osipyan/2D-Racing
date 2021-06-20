@@ -2,30 +2,38 @@
 using System.Collections;
 using System.Collections.Generic;
 
-
+[RequireComponent(typeof(WheelJoint2D))]
 public class CarController : MonoBehaviour
 {
     [SerializeField] float maxMotorTorque;
-    [SerializeField] float maxSteeringAngle;
-    [SerializeField] WheelJoint2D frontWheel;
-    [SerializeField] WheelJoint2D backWheel;
+    [SerializeField] float rotationSpeed;
+
     JointMotor2D jointMotor;
+    float movement;
+    float rotation;
+    WheelJoint2D[] wheels;
+    Rigidbody2D rigbody;
     private void Start()
     {
-        jointMotor = frontWheel.motor;
+        wheels = GetComponents<WheelJoint2D>();
+        rigbody = GetComponent<Rigidbody2D>();
+        jointMotor = wheels[0].motor;
     }
 
+    private void Update()
+    {
+        movement =  Input.GetAxis("Vertical");
+        rotation = Input.GetAxis("Horizontal");
+        
+    }
     public void FixedUpdate()
     {
-        float motor = maxMotorTorque * Input.GetAxis("Vertical");
-        float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
-        Debug.Log(motor + " " + steering);
-
-        jointMotor.motorSpeed = motor;
-        frontWheel.motor = jointMotor;
-        backWheel.motor = jointMotor;
-
-
+        jointMotor.motorSpeed = -maxMotorTorque * movement;
+        foreach (var item in wheels)
+        {
+            item.motor = jointMotor;
+        }
+        rigbody.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
 
     }
 }
