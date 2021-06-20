@@ -10,30 +10,25 @@ public class CarController : MonoBehaviour
 
     JointMotor2D jointMotor;
     float movement;
-    float rotation;
     WheelJoint2D[] wheels;
-    Rigidbody2D rigbody;
     private void Start()
     {
         wheels = GetComponents<WheelJoint2D>();
-        rigbody = GetComponent<Rigidbody2D>();
         jointMotor = wheels[0].motor;
     }
 
     private void Update()
     {
         movement =  Input.GetAxis("Vertical");
-        rotation = Input.GetAxis("Horizontal");
         
     }
     public void FixedUpdate()
-    {
-        jointMotor.motorSpeed = -maxMotorTorque * movement;
+    {        
+        jointMotor.motorSpeed = (movement <= 0 && wheels[0].jointSpeed+10 > 0)? 0:-maxMotorTorque * movement;
         foreach (var item in wheels)
         {
-            item.motor = jointMotor;
+            item.motor = jointMotor;            
         }
-        rigbody.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
 
     }
 }

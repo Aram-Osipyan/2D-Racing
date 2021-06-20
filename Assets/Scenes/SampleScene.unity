@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80585dc5f1dfbb941a4c464aa392bc8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constantValue: 5
+  constantValue: 3.5
   player: {fileID: 837756086}
   scale: 15
   numOfPoints: 5
@@ -483,8 +483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543ddd32a0501f64bb7f8f7d722c4c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMotorTorque: 2000
-  rotationSpeed: 0
+  maxMotorTorque: 4000
+  rotationSpeed: 5
 --- !u!50 &837756085
 Rigidbody2D:
   serializedVersion: 4
