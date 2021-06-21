@@ -220,7 +220,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.13
+  orthographic size: 1.94
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -286,6 +286,7 @@ MonoBehaviour:
   player: {fileID: 837756086}
   scale: 15
   numOfPoints: 5
+  hillsAmplitude: 1.02
 --- !u!1971053207 &769480716
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0

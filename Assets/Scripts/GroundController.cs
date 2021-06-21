@@ -10,6 +10,7 @@ public class GroundController : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] int scale = 20;
     [SerializeField] int numOfPoints = 10;
+    [SerializeField, Range(1, 5)] float hillsAmplitude;
     private SpriteShapeController shape;
     private Vector3 lowPosition;
     void Start()
@@ -75,7 +76,7 @@ public class GroundController : MonoBehaviour
         shape.spline.InsertPointAt(numOfPoints - 1, nextPoint);
 
         ChangePointTangent(numOfPoints - 2);
-        nextPoint.y = Mathf.PerlinNoise(Random.Range(5f, 15f), 0);
+        nextPoint.y = hillsAmplitude*Mathf.PerlinNoise(Random.Range(5f, 15f), 0);
         shape.spline.InsertPointAt(numOfPoints - 1, nextPoint);
         ChangePointTangent(numOfPoints - 2);
     }
