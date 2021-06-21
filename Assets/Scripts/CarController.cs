@@ -8,9 +8,9 @@ public class CarController : MonoBehaviour
     [SerializeField] float maxMotorTorque;
     [SerializeField] float rotationSpeed;
 
-    JointMotor2D jointMotor;
-    float movement;
-    WheelJoint2D[] wheels;
+    private JointMotor2D jointMotor;
+    private float movement;
+    private WheelJoint2D[] wheels;
     private void Start()
     {
         wheels = GetComponents<WheelJoint2D>();
@@ -20,7 +20,7 @@ public class CarController : MonoBehaviour
     private void Update()
     {
         movement =  Input.GetAxis("Vertical");
-        
+
     }
     public void FixedUpdate()
     {        
